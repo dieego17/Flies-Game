@@ -12,8 +12,8 @@ const inicioJuego = (event) => {
         
             let mosca = document.createElement("IMG");
             mosca.src = "./imagenes/mosca.png";
-            let postLeft = Math.floor(Math.random() * (fondo_juego.clientWidth - mosca.width));
-            let posTop = Math.floor(Math.random() * (fondo_juego.clientHeight - mosca.height));
+            let postLeft = Math.floor(Math.random() * (fondo_juego.clientWidth - 90));
+            let posTop = Math.floor(Math.random() * (fondo_juego.clientHeight - 90));
            mosca.setAttribute(
                 "style",
                 "position:absolute; left:" + postLeft + "px; top:"+
@@ -24,7 +24,9 @@ const inicioJuego = (event) => {
 
         } 
     }else{
+
         window.location.reload();
+        
     }
 }
 
@@ -33,11 +35,14 @@ const pulsarMosca = (event) => {
     let element = event.target;
 
     if(element.nodeName === "IMG"){
-        element.remove()
-        marcador.textContent -= 1 
+        if(marcador.textContent > 1){
+            element.remove()
+            marcador.textContent -= 1 
+        }else{
+            window.location.reload(); 
+        }
         
     }
-
 }
 
 fondo_juego.addEventListener("click", pulsarMosca);
